@@ -86,7 +86,7 @@
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div> -->
                                     <div class="pull-right">
-                                        <a href="<?= site_url('auth/logout')?>" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="<?= site_url('auth/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -123,9 +123,12 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
-                    
+
                     <li><a href="<?= site_url('dashboard') ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-                    <li><a href="<?= site_url('visitor') ?>"><i class="fa fa-print"></i> <span>Add Report</span></a></li>
+
+                    <?php if (userdata('role') == 2) { ?>
+                        <li><a href="<?= site_url('visitor') ?>"><i class="fa fa-print"></i> <span>Add Report</span></a></li>
+                    <?php } ?>
 
                     <?php if (userdata('role') == 1) { ?>
                         <li class="header">Master Data</li>
