@@ -66,13 +66,13 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="<?= base_url()?>assets/img/user.png" class="user-image" alt="User Image">
+                                <img src="<?= base_url() ?>assets/img/user.png" class="user-image" alt="User Image">
                                 <span class="hidden-xs"><?= userdata('nama') ?></span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="<?= base_url()?>assets/img/user.png" class="img-circle" alt="User Image">
+                                    <img src="<?= base_url() ?>assets/img/user.png" class="img-circle" alt="User Image">
 
                                     <p>
                                         <?= userdata('nama') ?> - Web Developer
@@ -86,7 +86,7 @@
                                         <a href="#" class="btn btn-default btn-flat">Profile</a>
                                     </div> -->
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <a href="<?= site_url('auth/logout')?>" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -102,10 +102,10 @@
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="<?= base_url()?>assets/img/user.png" class="img-circle" alt="User Image">
+                        <img src="<?= base_url() ?>assets/img/user.png" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p><?= userdata('nama')?></p>
+                        <p><?= userdata('nama') ?></p>
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
@@ -123,24 +123,16 @@
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
-                    <li class="active treeview">
-                        <a href="#">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-                            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-                        </ul>
-                    </li>
+                    
                     <li><a href="<?= site_url('dashboard') ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-                    <li><a href="<?= site_url('dashboard') ?>"><i class="fa fa-print"></i> <span>Report</span></a></li>
+                    <li><a href="<?= site_url('visitor') ?>"><i class="fa fa-print"></i> <span>Add Report</span></a></li>
 
-                    <li class="header">Master Data</li>
-                    <li><a href="<?= site_url('destination') ?>"><i class="fa fa-map"></i> <span>Destination</span></a></li>
-                    <li><a href="<?= site_url('user') ?>"><i class="fa fa-users"></i> <span>Account</span></a></li>
+                    <?php if (userdata('role') == 1) { ?>
+                        <li class="header">Master Data</li>
+                        <li><a href="<?= site_url('destination') ?>"><i class="fa fa-map"></i> <span>Destination</span></a></li>
+                        <li><a href="<?= site_url('user') ?>"><i class="fa fa-users"></i> <span>Account</span></a></li>
+                    <?php } ?>
+
                 </ul>
             </section>
             <!-- /.sidebar -->

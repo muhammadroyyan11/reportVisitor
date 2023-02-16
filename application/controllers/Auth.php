@@ -45,10 +45,7 @@ class Auth extends CI_Controller
                             'user'  => $user_db['id_user'],
                             'role'  => $user_db['role'],
                             'timestamp' => time(),
-                            'jabatan'   => $user_db['jabatan'],
-                            'tingkatan'   => $user_db['tingkatan'],
-                            'ttd'   => $user_db['ttd'],
-                            'nip'   => $user_db['nip']
+                            'wisata_id'   => $user_db['wisata_id']
                         ];
                         $this->session->set_userdata('login_session', $userdata);
                         redirect('dashboard');
