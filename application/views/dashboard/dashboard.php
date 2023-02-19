@@ -14,7 +14,7 @@ if (userdata('role') != 1) { ?>
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Data <?= $data->nama ?></h3>
+                        <h3 class="box-title">Data <?= $wisata->nama ?></h3>
                     </div>
                     <div class="col-8">
                         <!-- <canvas id="graph"></canvas> -->
