@@ -23,7 +23,7 @@ class Base_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('pengajuan');
-         $this->db->join('user', 'user.id_user = pengajuan.createdBy');
+        $this->db->join('user', 'user.id_user = pengajuan.createdBy');
         if ($where != null) {
             $this->db->where('id_pengajuan', $where);
         }

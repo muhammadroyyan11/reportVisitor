@@ -12,14 +12,31 @@ class Dashboard extends CI_Controller
         // // $this->load->model('Auth_model', 'auth');
         // $this->load->model('Admin_model', 'admin');
         $this->load->model('Base_model', 'base');
+        $this->load->model('Chart_model', 'chart');
     }
 
     public function index()
     {
-        $data['title'] = "Dashboard";
-        
-        $this->template->load('template', 'dashboard/dashboard', $data);
+        $x['title'] = "Dashboard";
+
+        if (userdata('role') != 1) {
+            $data['chart'] = $this->chart->chart_data(userdata('wisata_id'))->result();
+            $x['wisata'] = $this->chart->chart_data(userdata('wisata_id'))->row();
+
+        } else {
+            $data['chart'] = $this->chart->chart_data()->result();
+            $x['wisata'] = $this->chart->chart_data()->result();
+        }
+        $x['dewasa'] = json_encode($data['chart']);
+
+        $this->template->load('template', 'dashboard/dashboard', $x, $data);
     }
 
-  
+
+    public function chart()
+    {
+        $data = $this->chart->chart(userdata('wisata_id'))->result();
+
+        echo json_encode($data);
+    }
 }

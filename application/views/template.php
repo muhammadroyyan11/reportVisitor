@@ -33,12 +33,52 @@
 
     <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/skins/_all-skins.min.css">
 
+    <!-- chart  -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+    <script src="<?= base_url() ?>assets/dist/js/highchart.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
+    <!-- <script src="http://code.highcharts.com/highcharts.js"></script> -->
+
+    <!-- <script type="text/javascript">
+        $(function() {
+
+            var data_dewasa = <?php echo $dewasa; ?>;
+            var data_anak = <?php echo $anak; ?>;
+
+            $('#bar_chart').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                title: {
+                    text: 'Yearly Website Ratio'
+                },
+                xAxis: {
+                    categories: ['Waduk A', 'Waduk B']
+                },
+                yAxis: {
+                    title: {
+                        text: 'Rate'
+                    }
+                },
+                series: [{
+                    name: 'Dewasa',
+                    data: data_dewasa
+                }, {
+                    name: 'Anak-anak',
+                    data: data_anak
+                }]
+            });
+        });
+    </script> -->
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -392,6 +432,164 @@
 
     <script src="<?= base_url() ?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?= base_url() ?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+    <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
+    <script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
+    <script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
+
+    <?php if (userdata('role') != 1) { ?>
+        <script>
+            console.log(<?php echo $dewasa; ?>);
+
+            Morris.Bar({
+                element: 'graph',
+                data: <?php echo $dewasa; ?>,
+                xkey: 'golongan',
+                ykeys: ['count'],
+                labels: ['jumlah'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+            });
+        </script>
+        <?php } else {
+        foreach ($wisata as $key => $data) { ?>
+            <script>
+                console.log(<?php echo $dewasa; ?>);
+
+                Morris.Bar({
+                    element: 'graph<?= $data->wisata_id ?>',
+                    data: <?php echo $dewasa; ?>,
+                    xkey: 'golongan',
+                    ykeys: ['count'],
+                    labels: ['jumlah'],
+                    barRatio: 0.4,
+                    xLabelAngle: 35,
+                    hideHover: 'auto',
+                });
+            </script>
+    <?php }
+    } ?>
+    <!-- chart  -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script> -->
+
+    <!-- <script>
+        const baseUrl = "<?php echo base_url(); ?>"
+        const myChart = (chartType) => {
+            $.ajax({
+                url: baseUrl + 'dashboard/chart',
+                dataType: 'json',
+                method: 'get',
+                success: data => {
+                    let chartX = []
+                    let chartY = []
+                    let total = ''
+
+                    total += data.jumlah
+
+                    console.log(total);
+
+
+                    data.map(data => {
+                        chartX.push(data.nama)
+                        chartY.push(data.jumlah)
+                    })
+                    const chartData = {
+                        labels: chartX,
+                        datasets: [{
+                            label: 'Chart',
+                            data: chartY,
+                            backgroundColor: ['lightcoral'],
+                            borderColor: ['lightcoral'],
+                            borderWidth: 4
+                        }]
+                    }
+                    const ctx = document.getElementById(chartType).getContext('2d')
+                    const config = {
+                        type: chartType,
+                        data: chartData
+                    }
+                    switch (chartType) {
+                        case 'pie':
+                            const pieColor = ['salmon', 'red', 'green', 'blue', 'aliceblue', 'pink', 'orange', 'gold', 'plum', 'darkcyan', 'wheat', 'silver']
+                            chartData.datasets[0].backgroundColor = pieColor
+                            chartData.datasets[0].borderColor = pieColor
+                            break;
+                        case 'bar':
+                            chartData.datasets[0].backgroundColor = ['skyblue']
+                            chartData.datasets[0].borderColor = ['skyblue']
+                            break;
+                        default:
+                            config.options = {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true
+                                    }
+                                }
+                            }
+                    }
+                    const chart = new Chart(ctx, config)
+
+                    console.log(data);
+                }
+            })
+        }
+
+        myChart('pie')
+        myChart('line')
+        myChart('bar')
+    </script> -->
+
+    <!-- <script>
+        const baseUrl = "<?php echo base_url(); ?>"
+        $(function() {
+            //new Chart(document.getElementById("line_chart").getContext("2d"), getChartJs('line'));
+            new Chart(document.getElementById("bar_chart").getContext("2d"), getChartJs('bar'));
+            //new Chart(document.getElementById("radar_chart").getContext("2d"), getChartJs('radar'));
+            //new Chart(document.getElementById("pie_chart").getContext("2d"), getChartJs('pie'));
+        });
+
+        function getChartJs(type) {
+            var config = null;
+
+            $.ajax({
+                url: baseUrl + 'dashboard/chart',
+                dataType: 'json',
+                method: 'get',
+                success: data => {
+
+                }
+            })
+
+            if (type === 'bar') {
+                config = {
+                    type: 'bar',
+                    data: {
+                        labels: ["JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO", "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"],
+                        datasets: [{
+                            label: "Total",
+                            data: [65, 59, 80, 81, 56, 55, 40],
+                            backgroundColor: 'rgba(0, 188, 212, 0.8)'
+                        }, {
+                            label: "Dewasa",
+                            data: [28, 48, 40, 19, 86, 27, 90],
+                            backgroundColor: 'rgba(233, 30, 99, 0.8)'
+                        }, {
+                            label: "Anak-anak",
+                            data: [28, 48, 40, 19, 86, 27, 90],
+                            backgroundColor: 'rgba(0, 0, 0, 0.23)'
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        legend: false
+                    }
+                }
+            }
+            return config;
+        }
+    </script> -->
 
     <script>
         var confirmation = $("#confirmation");
