@@ -37,7 +37,7 @@ if (userdata('role') != 1) { ?>
                             <h3 class="box-title">Data <?= $data->nama ?></h3>
                         </div>
                         <div class="col-8">
-                            <!-- <canvas id="graph"></canvas> -->
+                            <!-- <canvas id="bar"_chart""></canvas> -->
                             <div id="graph<?= $data->wisata_id?>"></div>
                         </div>
                         <!-- /.box-body -->

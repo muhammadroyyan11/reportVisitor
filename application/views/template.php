@@ -439,8 +439,6 @@
 
     <?php if (userdata('role') != 1) { ?>
         <script>
-            console.log(<?php echo $dewasa; ?>);
-
             Morris.Bar({
                 element: 'graph',
                 data: <?php echo $dewasa; ?>,
@@ -451,9 +449,9 @@
                 xLabelAngle: 35,
                 hideHover: 'auto',
             });
-        </script>
+        </script>   
         <?php } else {
-        foreach ($wisata as $key => $data) { ?>
+                foreach ($wisata as $key => $data) { ?>
             <script>
                 console.log(<?php echo $dewasa; ?>);
 
@@ -469,12 +467,12 @@
                 });
             </script>
     <?php }
-    } ?>
+            } ?>
     <!-- chart  -->
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script> -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 
-    <!-- <script>
+    <script>
         const baseUrl = "<?php echo base_url(); ?>"
         const myChart = (chartType) => {
             $.ajax({
@@ -492,7 +490,7 @@
 
 
                     data.map(data => {
-                        chartX.push(data.nama)
+                        chartX.push(data.golongan)
                         chartY.push(data.jumlah)
                     })
                     const chartData = {
@@ -530,8 +528,6 @@
                             }
                     }
                     const chart = new Chart(ctx, config)
-
-                    console.log(data);
                 }
             })
         }
