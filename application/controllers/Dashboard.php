@@ -18,41 +18,35 @@ class Dashboard extends CI_Controller
         $x['title'] = "Dashboard";
 
         if (userdata('role') != 1) {
-            $data['chart'] = $this->chart->chart_data(userdata('wisata_id'))->result();
+            $data['chart'] = $this->chart->chart_data(userdata('wisata_id'))->result_array();
             $data['total'] = $this->chart->chart_total(userdata('wisata_id'))->result();
             $x['wisata'] = $this->chart->chart_data(userdata('wisata_id'))->row();
         } else {
-            $data['chart'] = $this->chart->chart_data()->result();
+            $data['chart'] = $this->chart->chart_data()->result_array();
             $x['wisata'] = $this->chart->chart_data()->result();
         }
 
         $var1 = 0;
-        $arr = [];
+        $arr = null;
 
-        foreach ($data['total'] as $key => $data) {
-            if ($data->wisata_id == userdata('wisata_id')) {
-                $var1 += $data->count;
+        foreach ($data['total'] as $key => $datas) {
+            if ($datas->wisata_id == userdata('wisata_id')) {
+                $var1 += $datas->count;
 
-                $params = (object) array(
+                $params = [
                     'count' => $var1,
-                    'golongan' => 'Total ',
-                    'wisata_id' => $data->wisata_id
-                );
+                    'golongan' => 'Total',
+                    'nama' => 'Total',
+                    'wisata_id' => $datas->wisata_id
+                ];
             }
-            array_push($arr, $params);
+
+            $arr = $params;
         }
+        
+        $data['chart'][] = $arr;
 
-        // foreach ($data['chart'] as $key => $data) {
-        //     $params2 = (object) array(
-        //         'count' => $data->count,
-        //         'golongan' => $data->golongan,
-        //         'wisata_id' => $data->wisata_id
-        //     );
-        // }
-
-        var_dump($params);
-
-        // $x['dewasa'] = json_encode($data['chart']);
+        $x['dewasa'] = json_encode($data['chart']);
 
         // var_dump($x['dewasa']);
 
