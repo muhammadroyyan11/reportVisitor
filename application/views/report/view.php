@@ -13,8 +13,8 @@
             <div class="box-body">
                 <?= $this->session->flashdata('pesan'); ?>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Pilih laporan</label>
-                    <div class="col-sm-10 form-group">
+                    <!-- <label for="inputEmail3" class="col-sm-2 control-label">Pilih laporan</label> -->
+                    <!-- <div class="col-sm-10 form-group">
                         <div class="radio">
                             <label>
                                 <input value="logbook" type="radio" name="transaksi" id="logbook" name="transaksi">
@@ -28,7 +28,7 @@
                             </label>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group has-feedback">
                     <label for="inputPassword3" class="col-sm-2 control-label">Periode Tanggal</label>
 
