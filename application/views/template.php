@@ -449,25 +449,120 @@
                 xLabelAngle: 35,
                 hideHover: 'auto',
             });
-        </script>   
-        <?php } else {
-                foreach ($wisata as $key => $data) { ?>
-            <script>
-                console.log(<?php echo $dewasa; ?>);
+        </script>
+    <?php } else { ?>
 
-                Morris.Bar({
-                    element: 'graph<?= $data->wisata_id ?>',
-                    data: <?php echo $dewasa; ?>,
-                    xkey: 'golongan',
-                    ykeys: ['count'],
-                    labels: ['jumlah'],
-                    barRatio: 0.4,
-                    xLabelAngle: 35,
-                    hideHover: 'auto',
-                });
-            </script>
-    <?php }
-            } ?>
+        <!-- DARMA  -->
+        <script>
+            console.log(<?php echo $darma; ?>);
+
+            Morris.Bar({
+                element: 'graph_darma',
+                data: <?php echo $darma; ?>,
+                xkey: 'golongan',
+                ykeys: ['count'],
+                labels: ['jumlah'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+            });
+        </script>
+        <!-- END DARMA  -->
+
+        <!-- CIGUGUR  -->
+        <script>
+            console.log(<?php echo $cigugur; ?>);
+
+            Morris.Bar({
+                element: 'graph_cigugur',
+                data: <?php echo $cigugur; ?>,
+                xkey: 'golongan',
+                ykeys: ['count'],
+                labels: ['jumlah'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+            });
+        </script>
+
+        <script>
+            console.log(<?php echo $dalem; ?>);
+
+            Morris.Bar({
+                element: 'graph_dalem',
+                data: <?php echo $dalem; ?>,
+                xkey: 'golongan',
+                ykeys: ['count'],
+                labels: ['jumlah'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+            });
+        </script>
+
+        <script>
+            console.log(<?php echo $monyet; ?>);
+
+            Morris.Bar({
+                element: 'graph_monyet',
+                data: <?php echo $monyet; ?>,
+                xkey: 'golongan',
+                ykeys: ['count'],
+                labels: ['jumlah'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+            });
+        </script>
+
+        <script>
+            console.log(<?php echo $cipaniis; ?>);
+
+            Morris.Bar({
+                element: 'graph_cipaniis',
+                data: <?php echo $cipaniis; ?>,
+                xkey: 'golongan',
+                ykeys: ['count'],
+                labels: ['jumlah'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+            });
+        </script>
+
+        <script>
+            console.log(<?php echo $remis; ?>);
+
+            Morris.Bar({
+                element: 'graph_remis',
+                data: <?php echo $remis; ?>,
+                xkey: 'golongan',
+                ykeys: ['count'],
+                labels: ['jumlah'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+            });
+        </script>
+
+        <script>
+            console.log(<?php echo $nilem; ?>);
+
+            Morris.Bar({
+                element: 'graph_nilem',
+                data: <?php echo $nilem; ?>,
+                xkey: 'golongan',
+                ykeys: ['count'],
+                labels: ['jumlah'],
+                barRatio: 0.4,
+                xLabelAngle: 35,
+                hideHover: 'auto',
+            });
+        </script>
+
+        <!-- END CIGUGUR  -->
+    <?php
+    } ?>
     <!-- chart  -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>

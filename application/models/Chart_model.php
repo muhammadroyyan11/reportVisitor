@@ -21,7 +21,7 @@ class Chart_model extends CI_Model
 
     public function chart_data($id = null, $gol = null)
     {
-        $this->db->select('sum(jumlah) as count, golongan, wisata.nama, wisata_id');
+        $this->db->select('distinct sum(jumlah) as count, golongan, wisata.nama, wisata_id');
         $this->db->from('pengunjung');
         $this->db->join('wisata', 'wisata.id_wisata = pengunjung.wisata_id');
         if ($id != null) {
