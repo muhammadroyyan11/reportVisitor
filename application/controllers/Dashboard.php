@@ -243,7 +243,7 @@ class Dashboard extends CI_Controller
 
             $x['dewasa'] = json_encode($data['chart']);
         }
-
+        // var_dump(date('Y-m-d'));
         $this->template->load('template', 'dashboard/dashboard', $x, $data);
     }
 

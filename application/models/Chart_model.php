@@ -24,6 +24,7 @@ class Chart_model extends CI_Model
         $this->db->select('distinct sum(jumlah) as count, golongan, wisata.nama, wisata_id');
         $this->db->from('pengunjung');
         $this->db->join('wisata', 'wisata.id_wisata = pengunjung.wisata_id');
+        $this->db->where('DATE(dateTime)', date('Y-m-d'));
         if ($id != null) {
             $this->db->where('wisata_id', $id);
         }
@@ -42,6 +43,7 @@ class Chart_model extends CI_Model
         $this->db->select('sum(jumlah) as count, golongan, wisata.nama, wisata_id');
         $this->db->from('pengunjung');
         $this->db->join('wisata', 'wisata.id_wisata = pengunjung.wisata_id');
+        $this->db->where('DATE(dateTime)', date('Y-m-d'));
         if ($id != null) {
             $this->db->where('wisata_id', $id);
         }
