@@ -117,7 +117,7 @@ if (userdata('role') == 1) { ?>
                     <!-- END remis  -->
                 </div>
             <?php } ?>
-            <?php if ($getnilem != null) { ?>
+            <?php if ($getNilem != null) { ?>
                 <div class="col-xs-6">
                     <!-- nilem  -->
                     <div class="box">

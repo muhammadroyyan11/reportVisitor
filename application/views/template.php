@@ -18,6 +18,18 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/skins/_all-skins.min.css">
+    <!-- InputMask -->
+	<script src="<?= base_url() ?>assets/plugins/input-mask/jquery.inputmask.js"></script>
+	<script src="<?= base_url() ?>assets/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+	<script src="<?= base_url() ?>assets/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <script src="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap datepicker -->
+	<script src="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+	<!-- bootstrap color picker -->
+	<script src="<?= base_url() ?>assets/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+	<!-- bootstrap time picker -->
+	<script src="<?= base_url() ?>assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+    <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- Morris chart -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/morris.js/morris.css">
     <!-- jvectormap -->
@@ -32,53 +44,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
     <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/skins/_all-skins.min.css">
-
-    <!-- chart  -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-  <![endif]-->
-    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
-    <script src="<?= base_url() ?>assets/dist/js/highchart.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-    <!-- <script src="http://code.highcharts.com/highcharts.js"></script> -->
-
-    <!-- <script type="text/javascript">
-        $(function() {
-
-            var data_dewasa = <?php echo $dewasa; ?>;
-            var data_anak = <?php echo $anak; ?>;
-
-            $('#bar_chart').highcharts({
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: 'Yearly Website Ratio'
-                },
-                xAxis: {
-                    categories: ['Waduk A', 'Waduk B']
-                },
-                yAxis: {
-                    title: {
-                        text: 'Rate'
-                    }
-                },
-                series: [{
-                    name: 'Dewasa',
-                    data: data_dewasa
-                }, {
-                    name: 'Anak-anak',
-                    data: data_anak
-                }]
-            });
-        });
-    </script> -->
+    <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
 
     <!-- Google Font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -115,16 +81,13 @@
                                     <img src="<?= base_url() ?>assets/img/user.png" class="img-circle" alt="User Image">
 
                                     <p>
-                                        <?= userdata('nama') ?> - Web Developer
+                                        <?= userdata('nama') ?>
                                         <small>Member</small>
                                     </p>
                                 </li>
                                 <!-- Menu Body -->
                                 <!-- Menu Footer-->
                                 <li class="user-footer">
-                                    <!-- <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div> -->
                                     <div class="pull-right">
                                         <a href="<?= site_url('auth/logout') ?>" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
@@ -165,6 +128,7 @@
                     <li class="header">MAIN NAVIGATION</li>
 
                     <li><a href="<?= site_url('dashboard') ?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+                    <li><a href="<?= site_url('report') ?>"><i class="fa fa-print"></i> <span>Report</span></a></li>
 
                     <?php if (userdata('role') == 2) { ?>
                         <li><a href="<?= site_url('visitor') ?>"><i class="fa fa-print"></i> <span>Add Report</span></a></li>
@@ -436,6 +400,8 @@
     <script src="<?php echo base_url() . 'assets/js/jquery.min.js' ?>"></script>
     <script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
     <script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
+
+    <script src="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <?php if (userdata('role') != 1) { ?>
         <script>
@@ -711,6 +677,115 @@
             })
         })
     </script>
+
+    <script>
+        $(function() {
+            //Initialize Select2 Elements
+            $('.select2').select2()
+
+            //Datemask dd/mm/yyyy
+            $('#datemask').inputmask('dd/mm/yyyy', {
+                'placeholder': 'dd/mm/yyyy'
+            })
+            //Datemask2 mm/dd/yyyy
+            $('#datemask2').inputmask('mm/dd/yyyy', {
+                'placeholder': 'mm/dd/yyyy'
+            })
+            //Money Euro
+            $('[data-mask]').inputmask()
+
+            //Date range picker
+            $('#reservation').daterangepicker()
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({
+                timePicker: true,
+                timePickerIncrement: 30,
+                format: 'Y-m-d'
+            })
+            //Date range as a button
+            $('#daterange-btn').daterangepicker({
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment()
+                },
+                function(start, end) {
+                    $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+                }
+            )
+
+            //Date picker
+            $('#datepicker').datepicker({
+                autoclose: true
+            })
+
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            })
+            //Red color scheme for iCheck
+            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                checkboxClass: 'icheckbox_minimal-red',
+                radioClass: 'iradio_minimal-red'
+            })
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            })
+
+            //Colorpicker
+            $('.my-colorpicker1').colorpicker()
+            //color picker with addon
+            $('.my-colorpicker2').colorpicker()
+
+            //Timepicker
+            $('.timepicker').timepicker({
+                showInputs: false
+            })
+        })
+    </script>
+
+    <script>
+        //Date picker
+        $('#tanggalLahir').datepicker({
+            autoclose: true
+        })
+
+        //iCheck for checkbox and radio inputs
+        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+            checkboxClass: 'icheckbox_minimal-blue',
+            radioClass: 'iradio_minimal-blue'
+        })
+        //Red color scheme for iCheck
+        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+            checkboxClass: 'icheckbox_minimal-red',
+            radioClass: 'iradio_minimal-red'
+        })
+        //Flat red color scheme for iCheck
+        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
+        })
+
+        //Colorpicker
+        $('.my-colorpicker1').colorpicker()
+        //color picker with addon
+        $('.my-colorpicker2').colorpicker()
+
+        //Timepicker
+        $('.timepicker').timepicker({
+            showInputs: false
+        })
+    </script>
+
 </body>
 
 </html>
