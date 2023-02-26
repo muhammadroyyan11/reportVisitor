@@ -40,7 +40,7 @@ class Visitor extends CI_Controller {
 
         if ($post['anak'] != null) {
             $params = array(
-                'jumlah' => $post['dewasa'],
+                'jumlah' => $post['anak'],
                 'golongan' => 'Anak',
                 'dateTime' => date("Y-m-d h:i:s"),
                 'wisata_id' => userdata('wisata_id')
