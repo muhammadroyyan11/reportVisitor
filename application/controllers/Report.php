@@ -13,11 +13,18 @@ class Report extends CI_Controller
     }
 
     public function index()
-    {
+    {   
+        if (userdata('role') != 1) {
+            $getData = $this->base->getReport(['wisata_id' => userdata('wisata_id')])->result();
+        } else {
+            $getData = $this->base->getReport()->result();
+        }
+
         $data = array(
-            'title' => 'Report visitor'
+            'title' => 'Report visitor',
+            'report' => $getData
         );
-        $this->template->load('template', 'report/view', $data);
+        $this->template->load('template', 'report/data', $data);
     }
 
     public function proses()

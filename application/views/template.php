@@ -15,20 +15,22 @@
     <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/Ionicons/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/AdminLTE.min.css">
+
+    <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/dist/css/skins/_all-skins.min.css">
-    <!-- InputMask -->
-	<script src="<?= base_url() ?>assets/plugins/input-mask/jquery.inputmask.js"></script>
-	<script src="<?= base_url() ?>assets/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
-	<script src="<?= base_url() ?>assets/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    InputMask
+    <script src="<?= base_url() ?>assets/plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="<?= base_url() ?>assets/plugins/input-mask/jquery.inputmask.extensions.js"></script>
     <script src="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
     <!-- bootstrap datepicker -->
-	<script src="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-	<!-- bootstrap color picker -->
-	<script src="<?= base_url() ?>assets/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
-	<!-- bootstrap time picker -->
-	<script src="<?= base_url() ?>assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="<?= base_url() ?>assets/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="<?= base_url() ?>assets/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+    <!-- bootstrap time picker -->
+    <script src="<?= base_url() ?>assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- Morris chart -->
     <link rel="stylesheet" href="<?= base_url() ?>assets/bower_components/morris.js/morris.css">
@@ -59,7 +61,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Admin</b>LTE</span>
+                <img src="<?= base_url() ?>assets/img/logo_perumda_au.png" alt="" style="max-width: 6rem;">
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top">
@@ -355,11 +357,10 @@
         <div class="control-sidebar-bg"></div>
     </div>
     <!-- ./wrapper -->
+    <!-- <script src="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script> -->
 
     <!-- jQuery 3 -->
     <script src="<?= base_url() ?>assets/bower_components/jquery/dist/jquery.min.js"></script>
-    <!-- jQuery UI 1.11.4 -->
-    <script src="<?= base_url() ?>assets/bower_components/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
     <script>
         $.widget.bridge('uibutton', $.ui.button);
@@ -367,10 +368,10 @@
     <!-- Bootstrap 3.3.7 -->
     <script src="<?= base_url() ?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- Morris.js charts -->
-    <script src="<?= base_url() ?>assets/bower_components/raphael/raphael.min.js"></script>
+    <!-- <script src="<?= base_url() ?>assets/bower_components/raphael/raphael.min.js"></script> -->
     <script src="<?= base_url() ?>assets/bower_components/morris.js/morris.min.js"></script>
     <!-- Sparkline -->
-    <script src="<?= base_url() ?>assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- <script src="<?= base_url() ?>assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script> -->
     <!-- jvectormap -->
     <script src="<?= base_url() ?>assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
     <script src="<?= base_url() ?>assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
@@ -401,7 +402,6 @@
     <script src="<?php echo base_url() . 'assets/js/raphael-min.js' ?>"></script>
     <script src="<?php echo base_url() . 'assets/js/morris.min.js' ?>"></script>
 
-    <script src="<?= base_url() ?>assets/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <?php if (userdata('role') != 1) { ?>
         <script>
@@ -529,124 +529,6 @@
         <!-- END CIGUGUR  -->
     <?php
     } ?>
-    <!-- chart  -->
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
-
-    <script>
-        const baseUrl = "<?php echo base_url(); ?>"
-        const myChart = (chartType) => {
-            $.ajax({
-                url: baseUrl + 'dashboard/chart',
-                dataType: 'json',
-                method: 'get',
-                success: data => {
-                    let chartX = []
-                    let chartY = []
-                    let total = ''
-
-                    total += data.jumlah
-
-                    console.log(total);
-
-
-                    data.map(data => {
-                        chartX.push(data.golongan)
-                        chartY.push(data.jumlah)
-                    })
-                    const chartData = {
-                        labels: chartX,
-                        datasets: [{
-                            label: 'Chart',
-                            data: chartY,
-                            backgroundColor: ['lightcoral'],
-                            borderColor: ['lightcoral'],
-                            borderWidth: 4
-                        }]
-                    }
-                    const ctx = document.getElementById(chartType).getContext('2d')
-                    const config = {
-                        type: chartType,
-                        data: chartData
-                    }
-                    switch (chartType) {
-                        case 'pie':
-                            const pieColor = ['salmon', 'red', 'green', 'blue', 'aliceblue', 'pink', 'orange', 'gold', 'plum', 'darkcyan', 'wheat', 'silver']
-                            chartData.datasets[0].backgroundColor = pieColor
-                            chartData.datasets[0].borderColor = pieColor
-                            break;
-                        case 'bar':
-                            chartData.datasets[0].backgroundColor = ['skyblue']
-                            chartData.datasets[0].borderColor = ['skyblue']
-                            break;
-                        default:
-                            config.options = {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true
-                                    }
-                                }
-                            }
-                    }
-                    const chart = new Chart(ctx, config)
-                }
-            })
-        }
-
-        myChart('pie')
-        myChart('line')
-        myChart('bar')
-    </script> -->
-
-    <!-- <script>
-        const baseUrl = "<?php echo base_url(); ?>"
-        $(function() {
-            //new Chart(document.getElementById("line_chart").getContext("2d"), getChartJs('line'));
-            new Chart(document.getElementById("bar_chart").getContext("2d"), getChartJs('bar'));
-            //new Chart(document.getElementById("radar_chart").getContext("2d"), getChartJs('radar'));
-            //new Chart(document.getElementById("pie_chart").getContext("2d"), getChartJs('pie'));
-        });
-
-        function getChartJs(type) {
-            var config = null;
-
-            $.ajax({
-                url: baseUrl + 'dashboard/chart',
-                dataType: 'json',
-                method: 'get',
-                success: data => {
-
-                }
-            })
-
-            if (type === 'bar') {
-                config = {
-                    type: 'bar',
-                    data: {
-                        labels: ["JANEIRO", "FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO", "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"],
-                        datasets: [{
-                            label: "Total",
-                            data: [65, 59, 80, 81, 56, 55, 40],
-                            backgroundColor: 'rgba(0, 188, 212, 0.8)'
-                        }, {
-                            label: "Dewasa",
-                            data: [28, 48, 40, 19, 86, 27, 90],
-                            backgroundColor: 'rgba(233, 30, 99, 0.8)'
-                        }, {
-                            label: "Anak-anak",
-                            data: [28, 48, 40, 19, 86, 27, 90],
-                            backgroundColor: 'rgba(0, 0, 0, 0.23)'
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        legend: false
-                    }
-                }
-            }
-            return config;
-        }
-    </script> -->
 
     <script>
         var confirmation = $("#confirmation");
@@ -676,115 +558,81 @@
                 'autoWidth': false
             })
         })
+
+        // $(function() {
+        //     //Initialize Select2 Elements
+        //     $('.select2').select2()
+
+        //     //Datemask dd/mm/yyyy
+        //     $('#datemask').inputmask('dd/mm/yyyy', {
+        //         'placeholder': 'dd/mm/yyyy'
+        //     })
+        //     //Datemask2 mm/dd/yyyy
+        //     $('#datemask2').inputmask('mm/dd/yyyy', {
+        //         'placeholder': 'mm/dd/yyyy'
+        //     })
+        //     //Money Euro
+        //     $('[data-mask]').inputmask()
+
+        //     //Date range picker
+        //     $('#reservation').daterangepicker()
+        //     //Date range picker with time picker
+        //     $('#reservationtime').daterangepicker({
+        //         timePicker: true,
+        //         timePickerIncrement: 30,
+        //         format: 'Y-m-d'
+        //     })
+        //     //Date range as a button
+        //     $('#daterange-btn').daterangepicker({
+        //             ranges: {
+        //                 'Today': [moment(), moment()],
+        //                 'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+        //                 'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+        //                 'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+        //                 'This Month': [moment().startOf('month'), moment().endOf('month')],
+        //                 'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        //             },
+        //             startDate: moment().subtract(29, 'days'),
+        //             endDate: moment()
+        //         },
+        //         function(start, end) {
+        //             $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+        //         }
+        //     )
+
+        //     //Date picker
+        //     $('#datepicker').datepicker({
+        //         autoclose: true
+        //     })
+
+        //     //iCheck for checkbox and radio inputs
+        //     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+        //         checkboxClass: 'icheckbox_minimal-blue',
+        //         radioClass: 'iradio_minimal-blue'
+        //     })
+        //     //Red color scheme for iCheck
+        //     $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+        //         checkboxClass: 'icheckbox_minimal-red',
+        //         radioClass: 'iradio_minimal-red'
+        //     })
+        //     //Flat red color scheme for iCheck
+        //     $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+        //         checkboxClass: 'icheckbox_flat-green',
+        //         radioClass: 'iradio_flat-green'
+        //     })
+
+        //     //Colorpicker
+        //     $('.my-colorpicker1').colorpicker()
+        //     //color picker with addon
+        //     $('.my-colorpicker2').colorpicker()
+
+        //     //Timepicker
+        //     $('.timepicker').timepicker({
+        //         showInputs: false
+        //     })
+        // })
     </script>
 
-    <script>
-        $(function() {
-            //Initialize Select2 Elements
-            $('.select2').select2()
-
-            //Datemask dd/mm/yyyy
-            $('#datemask').inputmask('dd/mm/yyyy', {
-                'placeholder': 'dd/mm/yyyy'
-            })
-            //Datemask2 mm/dd/yyyy
-            $('#datemask2').inputmask('mm/dd/yyyy', {
-                'placeholder': 'mm/dd/yyyy'
-            })
-            //Money Euro
-            $('[data-mask]').inputmask()
-
-            //Date range picker
-            $('#reservation').daterangepicker()
-            //Date range picker with time picker
-            $('#reservationtime').daterangepicker({
-                timePicker: true,
-                timePickerIncrement: 30,
-                format: 'Y-m-d'
-            })
-            //Date range as a button
-            $('#daterange-btn').daterangepicker({
-                    ranges: {
-                        'Today': [moment(), moment()],
-                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                        'This Month': [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                    },
-                    startDate: moment().subtract(29, 'days'),
-                    endDate: moment()
-                },
-                function(start, end) {
-                    $('#daterange-btn span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-                }
-            )
-
-            //Date picker
-            $('#datepicker').datepicker({
-                autoclose: true
-            })
-
-            //iCheck for checkbox and radio inputs
-            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-                checkboxClass: 'icheckbox_minimal-blue',
-                radioClass: 'iradio_minimal-blue'
-            })
-            //Red color scheme for iCheck
-            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-                checkboxClass: 'icheckbox_minimal-red',
-                radioClass: 'iradio_minimal-red'
-            })
-            //Flat red color scheme for iCheck
-            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-                checkboxClass: 'icheckbox_flat-green',
-                radioClass: 'iradio_flat-green'
-            })
-
-            //Colorpicker
-            $('.my-colorpicker1').colorpicker()
-            //color picker with addon
-            $('.my-colorpicker2').colorpicker()
-
-            //Timepicker
-            $('.timepicker').timepicker({
-                showInputs: false
-            })
-        })
-    </script>
-
-    <script>
-        //Date picker
-        $('#tanggalLahir').datepicker({
-            autoclose: true
-        })
-
-        //iCheck for checkbox and radio inputs
-        $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-            checkboxClass: 'icheckbox_minimal-blue',
-            radioClass: 'iradio_minimal-blue'
-        })
-        //Red color scheme for iCheck
-        $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-            checkboxClass: 'icheckbox_minimal-red',
-            radioClass: 'iradio_minimal-red'
-        })
-        //Flat red color scheme for iCheck
-        $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-            checkboxClass: 'icheckbox_flat-green',
-            radioClass: 'iradio_flat-green'
-        })
-
-        //Colorpicker
-        $('.my-colorpicker1').colorpicker()
-        //color picker with addon
-        $('.my-colorpicker2').colorpicker()
-
-        //Timepicker
-        $('.timepicker').timepicker({
-            showInputs: false
-        })
-    </script>
 
 </body>
 

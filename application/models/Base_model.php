@@ -109,84 +109,16 @@ class Base_model extends CI_Model
         return $this->db->get()->result_array();
     }
 
-    public function getKartikel($id = null)
+    public function getReport($where = null)
     {
         $this->db->select('*');
-        $this->db->from('kartikel');
-        $this->db->order_by('nama', 'ASC');
-        if ($id != null) {
-            $this->db->where('id_kartikel', $id);
-        }
-        $query = $this->db->get();
-
-        return $query;
-    }
-
-    public function getKProduk($id = null)
-    {
-        $this->db->select('*');
-        $this->db->from('kproduk');
-        $this->db->order_by('nama', 'ASC');
-        if ($id != null) {
-            $this->db->where('id_kproduk', $id);
-        }
-        $query = $this->db->get();
-
-        return $query;
-    }
-
-    public function getBarang($id = null)
-    {
-        $this->db->select('*');
-        $this->db->from('barang');
-        $this->db->order_by('name', 'ASC');
-        if ($id != null) {
-            $this->db->where('id_barang', $id);
-        }
-        $query = $this->db->get();
-
-        return $query;
-    }
-
-    public function getOutlet($id = null)
-    {
-        $this->db->select('*');
-        $this->db->from('outlet');
-        $this->db->order_by('nama', 'ASC');
-        if ($id != null) {
-            $this->db->where('id_outlet', $id);
-        }
-        $query = $this->db->get();
-
-        return $query;
-    }
-
-    public function getArtikel($id = null)
-    {
-        $this->db->select('*');
-        $this->db->from('posting');
-        $this->db->order_by('judul', 'ASC');
-
-        if ($id != null) {
-            $this->db->where('id_posting', $id);
-        }
-
-        $query = $this->db->get();
-
-        return $query;
-    }
-
-    public function editBarang($post)
-    {
-        $params['name'] = $post['nama_barang'];
-        // 
-        $params['link_tokped'] = $post['link_tokped'];
-        $params['harga'] = $post['harga'];
-        if (!empty($post['description'])) {
-            $params['description'] = $post['description'];
-        }
-        $this->db->where('id_barang', $post['id_barang']);
-        $this->db->update('barang', $params);
+        $this->db->from('pengunjung');
+        $this->db->join('wisata', 'wisata.id_wisata = pengunjung.wisata_id');
+        if ($where != null) {
+            $this->db->where($where);
+        };
+        $this->db->order_by('dateTime', 'DESC');
+        return $this->db->get();
     }
 
     public function count($table)
