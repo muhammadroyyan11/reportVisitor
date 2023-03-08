@@ -22,7 +22,7 @@
                             <i class="fa fa-plus"></i> Add
                         </button>
                     </div> -->
-                        <h3 class="box-title">Data <?= $title ?></h3>
+                        <h3 class="box-title">Print <?= $title ?></h3>
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body">
